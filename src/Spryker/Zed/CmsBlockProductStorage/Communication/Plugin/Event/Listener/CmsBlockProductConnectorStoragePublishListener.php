@@ -8,24 +8,25 @@
 namespace Spryker\Zed\CmsBlockProductStorage\Communication\Plugin\Event\Listener;
 
 use Orm\Zed\CmsBlockProductConnector\Persistence\Map\SpyCmsBlockProductConnectorTableMap;
-use Spryker\Zed\CmsBlockProductConnector\Dependency\CmsBlockProductConnectorEvents;
 use Spryker\Zed\Event\Dependency\Plugin\EventBulkHandlerInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\PropelOrm\Business\Transaction\DatabaseTransactionHandlerTrait;
 
 /**
- * @deprecated Use `\Spryker\Zed\CmsBlockProductStorage\Communication\Plugin\Event\Listener\CmsBlockProductConnectorStoragePublishListener` and `\Spryker\Zed\CmsBlockProductStorage\Communication\Plugin\Event\Listener\CmsBlockProductConnectorStorageUnpublishListener` instead.
- *
  * @method \Spryker\Zed\CmsBlockProductStorage\Communication\CmsBlockProductStorageCommunicationFactory getFactory()
  * @method \Spryker\Zed\CmsBlockProductStorage\Persistence\CmsBlockProductStorageQueryContainerInterface getQueryContainer()
  * @method \Spryker\Zed\CmsBlockProductStorage\Business\CmsBlockProductStorageFacadeInterface getFacade()
  * @method \Spryker\Zed\CmsBlockProductStorage\CmsBlockProductStorageConfig getConfig()
  */
-class CmsBlockProductConnectorStorageListener extends AbstractPlugin implements EventBulkHandlerInterface
+class CmsBlockProductConnectorStoragePublishListener extends AbstractPlugin implements EventBulkHandlerInterface
 {
     use DatabaseTransactionHandlerTrait;
 
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param \Generated\Shared\Transfer\EventEntityTransfer[] $eventTransfers
      * @param string $eventName
      *
@@ -35,12 +36,6 @@ class CmsBlockProductConnectorStorageListener extends AbstractPlugin implements 
     {
         $this->preventTransaction();
         $idProductAbstracts = $this->getFactory()->getEventBehaviorFacade()->getEventTransferForeignKeys($eventTransfers, SpyCmsBlockProductConnectorTableMap::COL_FK_PRODUCT_ABSTRACT);
-
-        if ($eventName === CmsBlockProductConnectorEvents::ENTITY_SPY_CMS_BLOCK_PRODUCT_CONNECTOR_DELETE) {
-            $this->getFacade()->refreshOrUnpublish($idProductAbstracts);
-
-            return;
-        }
 
         $this->getFacade()->publish($idProductAbstracts);
     }
