@@ -9,8 +9,5 @@ namespace Spryker\Zed\CmsBlockProductStorage\Business\CmsBlock;
 
 interface CmsBlockFeatureDetectorInterface
 {
-    /**
-     * @return bool
-     */
     public function isCmsBlockKeyPresent(): bool;
 }

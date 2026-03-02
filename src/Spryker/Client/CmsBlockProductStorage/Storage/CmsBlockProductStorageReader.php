@@ -35,10 +35,6 @@ class CmsBlockProductStorageReader implements CmsBlockProductStorageReaderInterf
      */
     protected $synchronizationService;
 
-    /**
-     * @param \Spryker\Client\CmsBlockProductStorage\Dependency\Client\CmsBlockProductStorageToStorageClientInterface $storageClient
-     * @param \Spryker\Client\CmsBlockProductStorage\Dependency\Service\CmsBlockProductStorageToSynchronizationServiceInterface $synchronizationService
-     */
     public function __construct(
         CmsBlockProductStorageToStorageClientInterface $storageClient,
         CmsBlockProductStorageToSynchronizationServiceInterface $synchronizationService
@@ -72,14 +68,6 @@ class CmsBlockProductStorageReader implements CmsBlockProductStorageReaderInterf
         return $this->mapBlockKeysArrayToCmsBlockTransfers($block[static::KEY_BLOCK_KEYS]);
     }
 
-    /**
-     * @param string $reference
-     * @param string $resourceName
-     * @param string|null $localeName
-     * @param string|null $storeName
-     *
-     * @return string
-     */
     protected function generateKey(
         string $reference,
         string $resourceName,

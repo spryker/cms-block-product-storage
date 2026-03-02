@@ -61,12 +61,6 @@ class CmsBlockProductStorageWriter implements CmsBlockProductStorageWriterInterf
      */
     protected $cmsBlockFeatureDetector;
 
-    /**
-     * @param \Spryker\Zed\CmsBlockProductStorage\Persistence\CmsBlockProductStorageQueryContainerInterface $queryContainer
-     * @param \Spryker\Zed\CmsBlockProductStorage\Dependency\Service\CmsBlockProductStorageToUtilSanitizeServiceInterface $utilSanitizeService
-     * @param bool $isSendingToQueue
-     * @param \Spryker\Zed\CmsBlockProductStorage\Business\CmsBlock\CmsBlockFeatureDetectorInterface $cmsBlockFeatureDetector
-     */
     public function __construct(
         CmsBlockProductStorageQueryContainerInterface $queryContainer,
         CmsBlockProductStorageToUtilSanitizeServiceInterface $utilSanitizeService,
@@ -131,12 +125,6 @@ class CmsBlockProductStorageWriter implements CmsBlockProductStorageWriterInterf
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CmsBlockProductTransfer $cmsBlockProductsTransfer
-     * @param \Orm\Zed\CmsBlockProductStorage\Persistence\SpyCmsBlockProductStorage|null $spyCmsBlockProductStorage
-     *
-     * @return void
-     */
     protected function storeDataSet(CmsBlockProductTransfer $cmsBlockProductsTransfer, ?SpyCmsBlockProductStorage $spyCmsBlockProductStorage = null): void
     {
         if ($spyCmsBlockProductStorage === null) {

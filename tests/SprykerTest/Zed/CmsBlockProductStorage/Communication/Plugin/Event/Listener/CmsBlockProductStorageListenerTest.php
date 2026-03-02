@@ -52,9 +52,6 @@ class CmsBlockProductStorageListenerTest extends Unit
      */
     protected $productAbstractTransfer;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -69,9 +66,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->tester->getCmsBlockProductConnectorFacade()->updateCmsBlockProductAbstractRelations($cmsBlockTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testCmsBlockProductConnectorPublishStorageListenerStoreData(): void
     {
         SpyCmsBlockProductStorageQuery::create()->filterByFkProductAbstract($this->productAbstractTransfer->getIdProductAbstract())->delete();
@@ -89,9 +83,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->assertCmsBlockProductStorage($beforeCount);
     }
 
-    /**
-     * @return void
-     */
     public function testCmsBlockProductConnectorStoragePublishListener(): void
     {
         SpyCmsBlockProductStorageQuery::create()->filterByFkProductAbstract($this->productAbstractTransfer->getIdProductAbstract())->delete();
@@ -109,9 +100,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->assertCmsBlockProductStorage($beforeCount);
     }
 
-    /**
-     * @return void
-     */
     public function testCmsBlockProductConnectorStorageUnpublishListener(): void
     {
         $cmsBlockProductConnectorStorageUnpublishListener = new CmsBlockProductConnectorStorageUnpublishListener();
@@ -127,9 +115,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->assertSame(0, SpyCmsBlockProductStorageQuery::create()->filterByFkProductAbstract($this->productAbstractTransfer->getIdProductAbstract())->count());
     }
 
-    /**
-     * @return void
-     */
     public function testCmsBlockProductConnectorStorageListenerStoreData(): void
     {
         SpyCmsBlockProductStorageQuery::create()->filterByFkProductAbstract($this->productAbstractTransfer->getIdProductAbstract())->delete();
@@ -149,9 +134,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->assertCmsBlockProductStorage($beforeCount);
     }
 
-    /**
-     * @return void
-     */
     public function testCmsBlockProductConnectorEntityStoragePublishListener(): void
     {
         SpyCmsBlockProductStorageQuery::create()->filterByFkProductAbstract($this->productAbstractTransfer->getIdProductAbstract())->delete();
@@ -171,9 +153,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->assertCmsBlockProductStorage($beforeCount);
     }
 
-    /**
-     * @return void
-     */
     public function testCmsBlockProductConnectorEntityStorageUnpublishListener(): void
     {
         $cmsBlockProductConnectorStorageListener = new CmsBlockProductConnectorEntityStorageUnpublishListener();
@@ -190,9 +169,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         $this->assertSame(0, SpyCmsBlockProductStorageQuery::create()->filterByFkProductAbstract($this->productAbstractTransfer->getIdProductAbstract())->count());
     }
 
-    /**
-     * @return \Spryker\Zed\CmsBlockProductStorage\Business\CmsBlockProductStorageFacade
-     */
     protected function getCmsBlockProductStorageFacade(): CmsBlockProductStorageFacade
     {
         $factory = new CmsBlockProductStorageBusinessFactory();
@@ -204,11 +180,6 @@ class CmsBlockProductStorageListenerTest extends Unit
         return $facade;
     }
 
-    /**
-     * @param int $beforeCount
-     *
-     * @return void
-     */
     protected function assertCmsBlockProductStorage(int $beforeCount): void
     {
         $count = SpyCmsBlockProductStorageQuery::create()->count();

@@ -11,9 +11,6 @@ use Orm\Zed\CmsBlock\Persistence\Map\SpyCmsBlockTableMap;
 
 class CmsBlockFeatureDetector implements CmsBlockFeatureDetectorInterface
 {
-    /**
-     * @return bool
-     */
     public function isCmsBlockKeyPresent(): bool
     {
         return defined(SpyCmsBlockTableMap::class . '::COL_KEY');
